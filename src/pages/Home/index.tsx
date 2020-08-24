@@ -21,7 +21,7 @@ function Home() {
         />
 
         <div className="buttons-container">
-          <Link to="/" className="list-pokemon">
+          <Link to="/pokemon-list" className="list-pokemon">
             Lista
           </Link>
           <Link to="/" className="fav-pokemon">
