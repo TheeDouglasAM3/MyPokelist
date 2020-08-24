@@ -22,7 +22,7 @@ module.exports = {
   ],
   rules: {
     semi: [2, 'never'],
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'] }],
     'import/extensions': 'off',
   },
   settings: {
