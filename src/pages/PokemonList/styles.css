@@ -1,0 +1,52 @@
+#page-pokemon-list {
+  width: 100vw;
+  height: 100vh;
+}
+
+.navbar {
+  width: 100%;
+  padding: 1.6rem;
+  display: grid;
+  grid-template-rows: 4.2rem ;
+  grid-template-columns: 2fr 250px;
+  grid-template-areas: 
+    "search button"
+  ;
+  background: var(--color-primary-light);
+}
+
+.navbar #input-find-pokemon {
+  grid-area: search;
+  font-size: 2.4rem;
+  padding: 0.8rem;
+  background: var(--color-input-background);
+}
+
+.navbar #link-favorite-pokemon {
+  grid-area: button;
+  color: var(--color-button-text);
+  background: var(--color-secundary);
+  border-radius: 0.8rem;
+  margin-left: 3.2rem;
+  margin-right: 1.6rem;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#pokemon-list-area{
+  margin:auto;
+  width: 78rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.pokemon-area{
+  width: 12rem;
+  height: 12rem;
+  margin: 0.5rem;
+  background: var(--color-primary-lighter);
+}
