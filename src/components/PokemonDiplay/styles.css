@@ -1,0 +1,25 @@
+.pokemon-area{
+  width: 19rem;
+  height: 19rem;
+  margin: 0.5rem;
+  background: var(--color-primary-lighter);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon-area .pokemon-type,
+.pokemon-area .pokemon-name{
+  font-size: 1.1rem;
+}
+
+.pokemon-area .pokemon-image-area{
+  width: 15rem;
+}
+
+.pokemon-area .pokemon-image-area .pokemon-image{
+  position: relative;
+  width: 100%;
+}
