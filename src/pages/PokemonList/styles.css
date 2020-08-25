@@ -39,14 +39,7 @@
 
 #pokemon-list-area{
   margin:auto;
-  width: 78rem;
+  width: 81rem;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-}
-
-.pokemon-area{
-  width: 12rem;
-  height: 12rem;
-  margin: 0.5rem;
-  background: var(--color-primary-lighter);
+  grid-template-columns: repeat(4, 1fr);
 }
