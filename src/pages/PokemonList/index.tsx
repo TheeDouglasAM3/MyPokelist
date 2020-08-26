@@ -1,31 +1,55 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { AxiosResponse } from 'axios'
 import api from '../../services/api'
 
-import PokemonDisplay from '../../components/PokemonDiplay'
+import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDiplay'
 
 import './styles.css'
 
-interface PokemonDisplayProps {
-  name: string
-  number: number
-  image: string
-  poketypes: string
-}
 function PokemonList() {
-  const [pokemons, setPokemons] = useState([])
+  const [pokemons, setPokemons] = useState([{
+    name: '', number: 0, image: '', poketypes: '',
+  }])
+  const limit = 40
 
-  async function searchDetailsSinglePokemon(url: string) {
-    const response = await api.get(url)
-    return response.data
-  }
+  async function searchPokemons(offset: number) {
+    const promisesPokemonDetails: any = []
 
-  async function searchPokemons() {
-    const response = await api.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40')
+    const a = await api.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
+      .then((response: AxiosResponse) => {
+        response.data.results.forEach((element: any) => {
+          promisesPokemonDetails.push(api.get(element.url))
+        })
+      })
+
+    await Promise.all([...promisesPokemonDetails])
+      .then((elements: any) => {
+        let pokemonAux: PokemonDisplayProps[] = []
+        elements.forEach((element: any) => {
+          pokemonAux = [...pokemonAux, {
+            name: element.data.name,
+            number: element.data.id,
+            image: element.data.sprites.front_default,
+            poketypes: element.data.types[0].type.name,
+          }]
+        })
+
+        setPokemons(pokemonAux)
+        console.log(pokemonAux)
+        return pokemonAux
+      })
+      // eslint-disable-next-line no-console
+      .catch(console.log)
   }
 
   useEffect(() => {
-    searchPokemons()
+    async function renderFirstPokemons() {
+      await searchPokemons(0)
+      await searchPokemons(40)
+    }
+
+    renderFirstPokemons()
   }, [])
 
   return (
