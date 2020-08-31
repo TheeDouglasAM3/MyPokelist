@@ -7,6 +7,8 @@
   width: 100%;
   padding: 1.6rem;
   display: grid;
+  position: fixed;
+  z-index:1;
   grid-template-rows: 4.2rem ;
   grid-template-columns: 2fr 250px;
   grid-template-areas: 
@@ -42,7 +44,8 @@
 }
 
 #pokemon-list-area{
-  margin:auto;
+  margin: auto;
+  margin-top: 7.8rem;
   width: 81rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
