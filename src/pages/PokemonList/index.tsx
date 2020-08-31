@@ -81,9 +81,7 @@ const PokemonList = () => {
           type="text"
           placeholder="Pesquise"
         />
-        <Link to="/" id="link-favorite-pokemon">
-          Favoritos
-        </Link>
+        <Link to="/" id="link-favorite-pokemon" />
       </div>
 
       <div id="pokemon-list-area">

@@ -37,6 +37,10 @@
   justify-content: center;
 }
 
+.navbar #link-favorite-pokemon:after {
+  content: 'Favoritos';
+}
+
 #pokemon-list-area{
   margin:auto;
   width: 81rem;
@@ -47,4 +51,24 @@
 .loading{
   margin: 0.8rem;
   text-align: center;
+}
+
+@media (max-width: 800px) {
+
+  .navbar {
+    grid-template-columns: 250px 3fr;
+    grid-template-areas: 
+    "search button button button"
+  ;
+  }
+
+  .navbar #link-favorite-pokemon:after {
+    content: 'Favs';
+  }
+
+  #pokemon-list-area{
+    margin:auto;
+    width: 40.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
