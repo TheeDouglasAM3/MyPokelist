@@ -43,3 +43,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+
+.loading{
+  margin: 0.8rem;
+  text-align: center;
+}
