@@ -70,8 +70,8 @@
   }
 
   #pokemon-list-area{
-    margin:auto;
-    width: 40.5rem;
+    width: 30rem;
     grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
   }
 }
