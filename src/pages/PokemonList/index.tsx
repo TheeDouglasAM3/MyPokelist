@@ -7,16 +7,15 @@ import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDip
 
 import './styles.css'
 
-function PokemonList() {
-  const [pokemons, setPokemons] = useState([{
-    name: '', number: 0, image: '', poketypes: '',
-  }])
-  const limit = 40
+const PokemonList = () => {
+  const [pokemons, setPokemons] = useState<PokemonDisplayProps[]>([])
+  const [offsetPoke, setOffsetPoke] = useState(0)
+  const [loading, setLoading] = useState(true)
+  const [limit, setLimit] = useState(40)
 
   async function searchPokemons(offset: number) {
     const promisesPokemonDetails: any = []
-
-    const a = await api.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
+    await api.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
       .then((response: AxiosResponse) => {
         response.data.results.forEach((element: any) => {
           promisesPokemonDetails.push(api.get(element.url))
@@ -35,22 +34,44 @@ function PokemonList() {
           }]
         })
 
-        setPokemons(pokemonAux)
-        console.log(pokemonAux)
+        setPokemons([...pokemons, ...pokemonAux])
         return pokemonAux
       })
-      // eslint-disable-next-line no-console
-      .catch(console.log)
+  }
+
+  const handleScroll = () => {
+    if (pokemons.length === offsetPoke + 40 && offsetPoke <= 807) {
+      if (pokemons.length < 767) {
+        setOffsetPoke(offsetPoke + 40)
+      } else {
+        setLimit(7)
+        setOffsetPoke(offsetPoke + 40)
+      }
+    }
+  }
+
+  window.onscroll = () => {
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+      handleScroll()
+    }
   }
 
   useEffect(() => {
     async function renderFirstPokemons() {
       await searchPokemons(0)
-      await searchPokemons(40)
     }
 
     renderFirstPokemons()
   }, [])
+
+  useEffect(() => {
+    const loadVideos = async () => {
+      setLoading(true)
+      await searchPokemons(offsetPoke)
+      setLoading(false)
+    }
+    if (offsetPoke < 807) loadVideos()
+  }, [offsetPoke])
 
   return (
     <div id="page-pokemon-list">
@@ -78,6 +99,7 @@ function PokemonList() {
 
       </div>
 
+      {loading && <div className="loading">Loading ...</div>}
     </div>
   )
 }
