@@ -59,15 +59,20 @@
 @media (max-width: 800px) {
 
   .navbar {
-    grid-template-columns: 220px 3fr;
+    grid-template-columns: 1fr;
     grid-template-areas: 
-    "search button button button"
+    "button"
   ;
   }
 
   .navbar #link-favorite-pokemon:after {
     font-size: 2.6rem;
-    content: '★';
+    content: 'Favoritos';
+    
+  }
+
+  .navbar #input-find-pokemon {
+    display:none;
   }
 
   #pokemon-list-area{

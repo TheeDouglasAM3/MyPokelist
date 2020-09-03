@@ -108,7 +108,7 @@ const PokemonList = () => {
           type="text"
           placeholder="Pesquise"
           value={inputSearch}
-          onInput={(event: React.FormEvent<HTMLInputElement>) => searchPokemonByName(event)}
+          onChange={(event: React.FormEvent<HTMLInputElement>) => searchPokemonByName(event)}
         />
         <Link to="/" id="link-favorite-pokemon" />
       </div>
