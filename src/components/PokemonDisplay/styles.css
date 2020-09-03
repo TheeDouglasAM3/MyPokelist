@@ -1,6 +1,6 @@
 .pokemon-area{
-  width: 19rem;
-  height: 19rem;
+  width: 17rem;
+  height: 17rem;
   margin: 0.5rem;
   background: var(--color-primary-lighter);
   display: flex;
@@ -16,7 +16,7 @@
 }
 
 .pokemon-area .pokemon-image-area{
-  width: 15rem;
+  width: 13rem;
 }
 
 .pokemon-area .pokemon-image-area .pokemon-image{

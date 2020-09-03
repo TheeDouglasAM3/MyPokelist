@@ -46,7 +46,7 @@
 #pokemon-list-area{
   margin: auto;
   margin-top: 7.8rem;
-  width: 81rem;
+  width: 72rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
@@ -59,7 +59,7 @@
 @media (max-width: 800px) {
 
   .navbar {
-    grid-template-columns: 250px 3fr;
+    grid-template-columns: 220px 3fr;
     grid-template-areas: 
     "search button button button"
   ;
