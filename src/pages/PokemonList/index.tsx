@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AxiosResponse } from 'axios'
 import api from '../../services/api'
 
-import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDiplay'
+import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDisplay'
 
 import './styles.css'
 
