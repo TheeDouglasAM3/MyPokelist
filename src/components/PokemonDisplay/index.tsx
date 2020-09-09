@@ -8,12 +8,13 @@ export interface PokemonDisplayProps {
   number: number
   image: string
   poketypes: string
+  isFavorite: boolean
 }
 
 const PokemonDisplay: React.FC<PokemonDisplayProps> = ({
-  name, number, image, poketypes,
+  name, number, image, poketypes, isFavorite,
 }) => (
-  <div className="pokemon-area">
+  <div className={isFavorite ? 'pokemon-area' : 'pokemon-area pokemon-favorited'}>
     <p className="pokemon-name">
       {`#${number} ${name}`}
     </p>
@@ -33,6 +34,7 @@ PokemonDisplay.propTypes = {
   number: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   poketypes: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
 }
 
 export default PokemonDisplay

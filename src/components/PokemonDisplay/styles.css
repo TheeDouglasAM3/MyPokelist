@@ -10,6 +10,10 @@
   align-items: center;
 }
 
+.pokemon-favorited{
+  background: var(--color-secundary) !important;
+}
+
 .pokemon-area .pokemon-type,
 .pokemon-area .pokemon-name{
   font-size: 1.1rem;
