@@ -17,9 +17,11 @@ const PokemonDisplay: React.FC<PokemonDisplayProps> = ({
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '{}')
-    favorites.forEach((favorite: number) => {
-      if (favorite === number) setIsFavorite(true)
-    })
+    if (favorites.length > 0) {
+      favorites.forEach((favorite: number) => {
+        if (favorite === number) setIsFavorite(true)
+      })
+    }
   }, [])
 
   function isFavoritesLimitReached() {
