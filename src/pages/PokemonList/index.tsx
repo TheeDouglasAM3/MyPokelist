@@ -110,7 +110,7 @@ const PokemonList = (): ReactElement => {
           value={inputSearch}
           onChange={(event: React.FormEvent<HTMLInputElement>) => searchPokemonByName(event)}
         />
-        <Link to="/" id="link-favorite-pokemon" />
+        <Link to="/pokemon-fav" id="link-favorite-pokemon" />
       </div>
 
       <div id="pokemon-list-area">
