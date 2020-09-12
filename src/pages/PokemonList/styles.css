@@ -67,12 +67,11 @@
 
   .navbar #link-favorite-pokemon:after {
     font-size: 2.6rem;
-    content: 'Favoritos';
-    
+    content: '★';
   }
 
   .navbar #input-find-pokemon {
-    display:none;
+    font-size: 1.2rem;
   }
 
   #pokemon-list-area{
