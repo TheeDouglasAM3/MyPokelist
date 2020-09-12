@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 
 import logoImg from '../../assets/images/logo.png'
 import homeImg from '../../assets/images/home.png'
 import './styles.css'
 
-function Home() {
+function Home(): ReactElement {
   return (
     <div id="page-home">
       <div className="container" id="page-home-content">

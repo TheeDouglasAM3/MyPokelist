@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { AxiosResponse } from 'axios'
 import api from '../../services/api'
@@ -7,7 +7,7 @@ import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDis
 
 import './styles.css'
 
-const PokemonList = () => {
+const PokemonList = (): ReactElement => {
   const [pokemons, setPokemons] = useState<PokemonDisplayProps[]>([])
   const [offsetPoke, setOffsetPoke] = useState(0)
   const [loading, setLoading] = useState(true)
