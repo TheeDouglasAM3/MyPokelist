@@ -12,13 +12,13 @@
   grid-template-rows: 4.2rem ;
   grid-template-columns: 2fr 250px;
   grid-template-areas: 
-    "search button"
+    "input button"
   ;
   background: var(--color-primary-light);
 }
 
 .navbar #input-find-pokemon {
-  grid-area: search;
+  grid-area: input;
   font-size: 2.4rem;
   padding: 0.8rem;
   background: var(--color-input-background);
