@@ -1,0 +1,70 @@
+#page-pokemon-fav {
+  width: 100vw;
+  height: 100vh;
+}
+
+.navbar {
+  width: 100%;
+  padding: 1.6rem;
+  display: grid;
+  position: fixed;
+  z-index:1;
+  grid-template-rows: 4.2rem ;
+  grid-template-columns: 2fr 250px;
+  grid-template-areas: 
+    "input button"
+  ;
+  background: var(--color-primary-light);
+}
+
+.navbar #input-link {
+  grid-area: input;
+  font-size: 2.4rem;
+  padding: 0.8rem;
+  background: var(--color-input-background);
+}
+
+.navbar #link-list-pokemon {
+  grid-area: button;
+  color: var(--color-button-text);
+  background: var(--color-primary);
+  border-radius: 0.8rem;
+  margin-left: 3.2rem;
+  margin-right: 1.6rem;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar #link-list-pokemon:after {
+  content: 'Lista';
+}
+
+@media (max-width: 800px) {
+
+  .navbar {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "input input button"
+  ;
+  }
+
+  .navbar #link-list-pokemon:after {
+    font-size: 2.6rem;
+    content: '≡';
+    
+  }
+
+  .navbar #input-link {
+    font-size: 1.2rem;
+  }
+
+  #pokemon-list-area{
+    width: 30rem;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+  }
+}
