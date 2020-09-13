@@ -43,6 +43,14 @@
   content: 'Lista';
 }
 
+#pokemon-list-area{
+  margin: auto;
+  margin-top: 7.8rem;
+  width: 72rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
 @media (max-width: 800px) {
 
   .navbar {
