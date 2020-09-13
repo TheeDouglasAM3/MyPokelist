@@ -24,7 +24,7 @@ function Home(): ReactElement {
           <Link to="/pokemon-list" className="list-pokemon">
             Lista
           </Link>
-          <Link to="/" className="fav-pokemon">
+          <Link to="/pokemon-fav" className="fav-pokemon">
             Favoritos
           </Link>
         </div>
