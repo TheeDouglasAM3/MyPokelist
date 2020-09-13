@@ -50,9 +50,7 @@ const PokemonList = (): ReactElement => {
   }
 
   const handleScroll = () => {
-    console.log(`${pokemons.length} ${offsetPoke}`)
     if (pokemons.length === offsetPoke + 40 && offsetPoke <= 807) {
-      console.log('oi')
       if (pokemons.length < 767) {
         setOffsetPoke(offsetPoke + 40)
       } else {
