@@ -7,7 +7,9 @@ import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDis
 import './styles.css'
 
 const PokemonFav = (): ReactElement => {
+  const baseUrl = `http://${window.location.host}`
   const [pokemons, setPokemons] = useState<PokemonDisplayProps[]>([])
+  const [userName, setUserName] = useState('')
 
   async function callPromisesToRenderPokemon(promisesPokemonDetails: any[]) {
     await Promise.all([...promisesPokemonDetails])
@@ -50,12 +52,23 @@ const PokemonFav = (): ReactElement => {
         <input
           id="input-link"
           type="text"
+          value={`${baseUrl}/pokemon-share?${userName}`}
           placeholder="Link para compartilhar"
           readOnly
         />
         <Link to="/pokemon-list" id="link-list-pokemon" />
       </div>
-      <div id="pokemon-list-area">
+
+      <div className="name-area">
+        <input
+          id="input-name-user"
+          type="text"
+          placeholder="Digite o seu nome"
+          onChange={(event: React.FormEvent<HTMLInputElement>) => setUserName(event.currentTarget.value)}
+        />
+      </div>
+
+      <div id="pokemon-fav-area">
         {pokemons.map((pokemon: PokemonDisplayProps) => (
           <PokemonDisplay
             key={pokemon.number}
