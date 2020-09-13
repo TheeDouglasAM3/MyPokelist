@@ -1,20 +1,74 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import api from '../../services/api'
+
+import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDisplay'
 
 import './styles.css'
 
-const PokemonFav = (): ReactElement => (
-  <div id="page-pokemon-fav">
-    <div className="navbar">
-      <input
-        id="input-link"
-        type="text"
-        placeholder="Link para compartilhar"
-        readOnly
-      />
-      <Link to="/pokemon-list" id="link-list-pokemon" />
+const PokemonFav = (): ReactElement => {
+  const [pokemons, setPokemons] = useState<PokemonDisplayProps[]>([])
+
+  async function callPromisesToRenderPokemon(promisesPokemonDetails: any[]) {
+    await Promise.all([...promisesPokemonDetails])
+      .then((elements: any) => {
+        let pokemonAux: PokemonDisplayProps[] = []
+        elements.forEach((element: any) => {
+          pokemonAux = [...pokemonAux, {
+            name: element.data.name,
+            number: element.data.id,
+            image: element.data.sprites.front_default,
+            poketypes: element.data.types[0].type.name,
+          }]
+        })
+        setPokemons([...pokemonAux])
+        return pokemonAux
+      })
+  }
+
+  async function searchFavoritesPokemon() {
+    const promisesPokemonDetails: any = []
+    const favorites = Object.values(JSON.parse(localStorage.getItem('favorites') || '{}'))
+    if (favorites.length > 0) {
+      favorites.forEach((numberPokemon: any) => {
+        promisesPokemonDetails.push(api.get(`https://pokeapi.co/api/v2/pokemon/${numberPokemon}/`))
+      })
+    }
+    await callPromisesToRenderPokemon(promisesPokemonDetails)
+  }
+
+  useEffect(() => {
+    async function renderFavoritesPokemon() {
+      await searchFavoritesPokemon()
+    }
+    renderFavoritesPokemon()
+  }, [])
+
+  return (
+    <div id="page-pokemon-fav">
+      <div className="navbar">
+        <input
+          id="input-link"
+          type="text"
+          placeholder="Link para compartilhar"
+          readOnly
+        />
+        <Link to="/pokemon-list" id="link-list-pokemon" />
+      </div>
+      <div id="pokemon-list-area">
+        {pokemons.map((pokemon: PokemonDisplayProps) => (
+          <PokemonDisplay
+            key={pokemon.number}
+            name={pokemon.name}
+            number={pokemon.number}
+            image={pokemon.image}
+            poketypes={pokemon.poketypes}
+          />
+        ))}
+
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default PokemonFav
