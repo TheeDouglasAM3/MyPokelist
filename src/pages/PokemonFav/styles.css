@@ -43,9 +43,22 @@
   content: 'Lista';
 }
 
-#pokemon-list-area{
+.name-area {
+  width: 74rem;
   margin: auto;
   margin-top: 7.8rem;
+  padding: 1.6rem;
+}
+
+.name-area #input-name-user {
+  width: 100%;
+  font-size: 1.6rem;
+  padding: 0.8rem;
+  background: var(--color-input-background);
+}
+
+#pokemon-fav-area{
+  margin: auto;
   width: 72rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -70,7 +83,15 @@
     font-size: 1.2rem;
   }
 
-  #pokemon-list-area{
+  .name-area {
+    width: 38rem;
+  }
+  
+  .name-area #input-name-user {
+    font-size: 1.2rem;
+  }
+
+  #pokemon-fav-area{
     width: 30rem;
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
