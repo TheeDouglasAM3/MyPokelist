@@ -17,7 +17,6 @@ const PokemonShare = (): ReactElement => {
       .then((elements: any) => {
         let pokemonAux: PokemonShareDisplayProps[] = []
         elements.forEach((element: any) => {
-          console.log(element)
           pokemonAux = [...pokemonAux, {
             name: element.data.name,
             number: element.data.id,
@@ -33,7 +32,6 @@ const PokemonShare = (): ReactElement => {
 
   async function searchFavoritesPokemon(pokemonNums: string[]) {
     const promisesPokemonDetails: any = []
-    console.log(pokemonNums)
     if (pokemonNums.length > 0) {
       pokemonNums.forEach((numberPokemon: string) => {
         promisesPokemonDetails.push(api.get(`https://pokeapi.co/api/v2/pokemon/${numberPokemon}/`))
@@ -53,7 +51,7 @@ const PokemonShare = (): ReactElement => {
   useEffect(() => {
     async function renderFavoritesPokemon() {
       const pokemonNums = await getInitialData()
-      console.log(pokemonNums)
+
       await searchFavoritesPokemon(pokemonNums)
     }
 
