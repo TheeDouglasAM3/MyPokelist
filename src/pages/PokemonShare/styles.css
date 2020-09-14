@@ -66,38 +66,3 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
-
-.favorite-box{
-  background: #F3F3F3;
-  border-radius: 0.8rem;
-  margin: 0.4rem;
-  height: 10.8rem;
-  display: grid;
-  grid-template-rows: 100%;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-areas: 
-    "img-pixel details img-art"
-  ;
-}
-
-.favorite-box .image-pokemon-pixels{
-  grid-area: img-pixel;
-  width: 100%;
-  align-self: center;
-  border-right: solid 1px #d3d3d3;
-}
-
-.favorite-box .pokemon-details{
-  grid-area: details;
-  font-size: 1.0rem;
-  line-height: 1.8em;  
-  text-align: center;
-  align-self: center;
-}
-
-.favorite-box .image-pokemon-art{
-  grid-area: img-art;
-  width: 100%;
-  align-self: center;
-  border-left: solid 1px #d3d3d3;
-}
