@@ -10,6 +10,7 @@ const PokemonFav = (): ReactElement => {
   const baseUrl = `http://${window.location.host}`
   const [pokemons, setPokemons] = useState<PokemonDisplayProps[]>([])
   const [userName, setUserName] = useState('')
+  const [favPokemonStringLink, setFavPokemonStringLink] = useState('')
 
   async function callPromisesToRenderPokemon(promisesPokemonDetails: any[]) {
     await Promise.all([...promisesPokemonDetails])
@@ -39,10 +40,20 @@ const PokemonFav = (): ReactElement => {
     await callPromisesToRenderPokemon(promisesPokemonDetails)
   }
 
+  function favoritesLocalStorageToString() {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '{}')
+      .toString()
+      .split(',')
+      .join('&p=')
+
+    setFavPokemonStringLink(`&p=${favorites}`)
+  }
+
   useEffect(() => {
     async function renderFavoritesPokemon() {
       await searchFavoritesPokemon()
     }
+    favoritesLocalStorageToString()
     renderFavoritesPokemon()
   }, [])
 
@@ -52,7 +63,7 @@ const PokemonFav = (): ReactElement => {
         <input
           id="input-link"
           type="text"
-          value={`${baseUrl}/pokemon-share?${userName}`}
+          value={`${baseUrl}/pokemon-share?name=${userName}${favPokemonStringLink}`}
           placeholder="Link para compartilhar"
           readOnly
         />
