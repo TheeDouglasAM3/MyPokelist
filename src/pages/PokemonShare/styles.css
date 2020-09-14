@@ -1,0 +1,103 @@
+#page-pokemon-share {
+  width: 72rem;
+  height: 100vh;
+  margin: auto;
+}
+
+#page-pokemon-share .user-card-top{
+  width: 100%;
+  margin-top: 1.6rem;
+  display: grid;
+  grid-template-rows: 4.2rem ;
+  grid-template-columns: 2fr 250px;
+  grid-template-areas: 
+    "name-area link"
+  ;
+  background: var(--color-box-footer);
+}
+
+#page-pokemon-share .user-card-top .user-area-name{
+  display: flex;
+  align-items: stretch;
+}
+
+#page-pokemon-share .user-card-top .user-area-name img{
+  height: 100%;
+  padding: 0.4rem;
+}
+
+#page-pokemon-share .user-card-top .user-area-name p{
+  font-size: 1.8rem;
+  align-self: center;
+}
+
+
+#page-pokemon-share .user-card-top #link-list-pokemon{
+  grid-area: link;
+  color: var(--color-button-text);
+  background: var(--color-primary);
+  border-radius: 0.8rem;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.0rem;
+  margin: 0.2rem 0.2rem 0.2rem 4.8rem;
+}
+
+#page-pokemon-share .user-card-body{
+  width: 100%;
+  margin-bottom: 1.6rem;
+  background: var(--color-box-footer);
+}
+
+#page-pokemon-share .user-card-body .title{
+  padding-top: 3.6rem;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+#page-pokemon-share .user-card-body .user-pokemon-favorites-area{
+  margin: auto;
+  margin-top: 3.6rem;
+  width: 72rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.favorite-box{
+  background: #F3F3F3;
+  border-radius: 0.8rem;
+  margin: 0.4rem;
+  height: 10.8rem;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: 
+    "img-pixel details img-art"
+  ;
+}
+
+.favorite-box .image-pokemon-pixels{
+  grid-area: img-pixel;
+  width: 100%;
+  align-self: center;
+  border-right: solid 1px #d3d3d3;
+}
+
+.favorite-box .pokemon-details{
+  grid-area: details;
+  font-size: 1.0rem;
+  line-height: 1.8em;  
+  text-align: center;
+  align-self: center;
+}
+
+.favorite-box .image-pokemon-art{
+  grid-area: img-art;
+  width: 100%;
+  align-self: center;
+  border-left: solid 1px #d3d3d3;
+}
