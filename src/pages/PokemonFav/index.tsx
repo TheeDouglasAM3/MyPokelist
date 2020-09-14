@@ -64,7 +64,7 @@ const PokemonFav = (): ReactElement => {
           id="input-name-user"
           type="text"
           placeholder="Digite o seu nome"
-          onChange={(event: React.FormEvent<HTMLInputElement>) => setUserName(event.currentTarget.value)}
+          onChange={(ev: React.FormEvent<HTMLInputElement>) => setUserName(ev.currentTarget.value)}
         />
       </div>
 
