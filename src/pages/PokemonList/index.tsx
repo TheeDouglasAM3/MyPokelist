@@ -52,10 +52,10 @@ const PokemonList = (): ReactElement => {
   }
 
   async function searchPokemonByName(event: React.FormEvent<HTMLInputElement>) {
-    setInputSearch(event.currentTarget.value)
+    setInputSearch(event.currentTarget.value.toLowerCase())
     if (event.currentTarget.value.length >= 2) {
       const filterPokemon = listAllPokemon
-        .filter((element: any) => element.name.includes(event.currentTarget.value))
+        .filter((element: any) => element.name.includes(event.currentTarget.value.toLowerCase()))
         .map((element: any) => api.get(element.url))
       await callPromisesToRenderPokemon(filterPokemon, true)
     } else if (event.currentTarget.value.length === 0) {
