@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
+import ReactNotification from 'react-notifications-component'
 import Routes from './routes'
 
+import 'react-notifications-component/dist/theme.css'
 import './assets/styles/global.css'
 
-function App() {
+function App(): ReactElement {
   return (
-    <Routes />
+    <>
+      <ReactNotification />
+      <Routes />
+    </>
   )
 }
 
