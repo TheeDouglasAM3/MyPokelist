@@ -74,6 +74,7 @@ const PokemonFav = (): ReactElement => {
           type="text"
           value={`${baseUrl}/pokemon-share?name=${userName}${favPokemonStringLink}`}
           placeholder="Link para compartilhar"
+          onFocus={(event) => event.currentTarget.select()}
           readOnly
         />
         <Link to="/pokemon-list" id="link-list-pokemon" />
