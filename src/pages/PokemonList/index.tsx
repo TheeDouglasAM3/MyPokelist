@@ -51,9 +51,29 @@ const PokemonList = (): ReactElement => {
     await callPromisesToRenderPokemon(promisesPokemonDetails, filter)
   }
 
+  async function searchPokemonByName(event: React.FormEvent<HTMLInputElement>) {
+    setInputSearch(event.currentTarget.value)
+    if (event.currentTarget.value.length >= 2) {
+      const filterPokemon = listAllPokemon
+        .filter((element: any) => element.name.includes(event.currentTarget.value))
+        .map((element: any) => api.get(element.url))
+      await callPromisesToRenderPokemon(filterPokemon, true)
+    } else if (event.currentTarget.value.length === 0) {
+      await searchPokemons(0, true)
+    }
+  }
+
+  function isThereMorePokemonToShow() {
+    return pokemons.length === offsetPoke + pokemonPerPage && offsetPoke <= maxNumberPokemon
+  }
+
+  function isTheLastPage() {
+    return pokemons.length >= maxNumberPokemon - pokemonPerPage
+  }
+
   const handleScroll = () => {
-    if (pokemons.length === offsetPoke + pokemonPerPage && offsetPoke <= maxNumberPokemon) {
-      if (pokemons.length < maxNumberPokemon - pokemonPerPage) {
+    if (isThereMorePokemonToShow()) {
+      if (!isTheLastPage()) {
         setOffsetPoke(offsetPoke + pokemonPerPage)
       } else {
         setLimit(maxNumberPokemon - (offsetPoke + pokemonPerPage))
@@ -87,18 +107,6 @@ const PokemonList = (): ReactElement => {
     }
     if (offsetPoke < maxNumberPokemon && inputSearch.length === 0) loadPokemon()
   }, [offsetPoke])
-
-  async function searchPokemonByName(event: React.FormEvent<HTMLInputElement>) {
-    setInputSearch(event.currentTarget.value)
-    if (event.currentTarget.value.length >= 2) {
-      const filterPokemon = listAllPokemon
-        .filter((element: any) => element.name.includes(event.currentTarget.value))
-        .map((element: any) => api.get(element.url))
-      await callPromisesToRenderPokemon(filterPokemon, true)
-    } else if (event.currentTarget.value.length === 0) {
-      await searchPokemons(0, true)
-    }
-  }
 
   return (
     <div id="page-pokemon-list">
