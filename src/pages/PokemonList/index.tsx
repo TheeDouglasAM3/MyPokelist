@@ -8,10 +8,12 @@ import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDis
 import './styles.css'
 
 const PokemonList = (): ReactElement => {
+  const pokemonPerPage = 80
+  const maxNumberPokemon = 807
   const [pokemons, setPokemons] = useState<PokemonDisplayProps[]>([])
   const [offsetPoke, setOffsetPoke] = useState(0)
   const [loading, setLoading] = useState(true)
-  const [limit, setLimit] = useState(40)
+  const [limit, setLimit] = useState(pokemonPerPage)
   const [listAllPokemon, setListAllPokemon] = useState<any[]>([])
   const [inputSearch, setInputSearch] = useState('')
 
@@ -50,12 +52,12 @@ const PokemonList = (): ReactElement => {
   }
 
   const handleScroll = () => {
-    if (pokemons.length === offsetPoke + 40 && offsetPoke <= 807) {
-      if (pokemons.length < 767) {
-        setOffsetPoke(offsetPoke + 40)
+    if (pokemons.length === offsetPoke + pokemonPerPage && offsetPoke <= maxNumberPokemon) {
+      if (pokemons.length < maxNumberPokemon - pokemonPerPage) {
+        setOffsetPoke(offsetPoke + pokemonPerPage)
       } else {
-        setLimit(7)
-        setOffsetPoke(offsetPoke + 40)
+        setLimit(maxNumberPokemon - (offsetPoke + pokemonPerPage))
+        setOffsetPoke(offsetPoke + pokemonPerPage)
       }
     }
   }
@@ -69,7 +71,7 @@ const PokemonList = (): ReactElement => {
   useEffect(() => {
     async function renderFirstPokemons() {
       await searchPokemons(0)
-      await api.get('https://pokeapi.co/api/v2/pokemon?limit=807&offset=0')
+      await api.get(`https://pokeapi.co/api/v2/pokemon?limit=${maxNumberPokemon}&offset=0`)
         .then((response: AxiosResponse) => {
           setListAllPokemon(response.data.results)
         })
@@ -83,7 +85,7 @@ const PokemonList = (): ReactElement => {
       await searchPokemons(offsetPoke)
       setLoading(false)
     }
-    if (offsetPoke < 807 && inputSearch.length === 0) loadPokemon()
+    if (offsetPoke < maxNumberPokemon && inputSearch.length === 0) loadPokemon()
   }, [offsetPoke])
 
   async function searchPokemonByName(event: React.FormEvent<HTMLInputElement>) {
