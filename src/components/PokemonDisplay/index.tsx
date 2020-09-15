@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import { store } from 'react-notifications-component'
 
 import './styles.css'
 
@@ -14,6 +15,8 @@ const PokemonDisplay: React.FC<PokemonDisplayProps> = ({
   name, number, image, poketypes,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false)
+  const [isNotificationVisible, setIsNotificationVisible] = useState(false)
+  const limitPokemon = 20
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '{}')
@@ -24,9 +27,28 @@ const PokemonDisplay: React.FC<PokemonDisplayProps> = ({
     }
   }, [])
 
+  function callNotification(message: string, type: any, duration = 3000) {
+    if (!isNotificationVisible) {
+      setIsNotificationVisible(true)
+      store.addNotification({
+        message,
+        type,
+        insert: 'top',
+        container: 'bottom-right',
+        animationIn: ['animate__animated', 'animate__fadeIn'],
+        animationOut: ['animate__animated', 'animate__fadeOut'],
+        dismiss: {
+          duration,
+          onScreen: true,
+        },
+      })
+      setTimeout(() => setIsNotificationVisible(false), duration)
+    }
+  }
+
   function isFavoritesLimitReached() {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '{}')
-    return favorites.length >= 20
+    return favorites.length >= limitPokemon
   }
 
   function updateFavoriteList() {
@@ -40,12 +62,16 @@ const PokemonDisplay: React.FC<PokemonDisplayProps> = ({
       })
     }
 
-    if (!isAlreadyFavorited && !isFavoritesLimitReached()) {
-      favorites.push(number)
-      isAddFavoriteList = true
-    } else {
+    if (isAlreadyFavorited) {
       favorites = favorites.filter((element) => element !== number)
       isAddFavoriteList = false
+    } else if (isFavoritesLimitReached()) {
+      isAddFavoriteList = false
+      callNotification(`Você alcançou o limite de ${limitPokemon} pokémon favoritos`, 'danger')
+    } else {
+      favorites.push(number)
+      isAddFavoriteList = true
+      if (favorites.length === limitPokemon / 2) callNotification(`Você favoritou ${limitPokemon / 2} pokémon`, 'warning')
     }
 
     localStorage.setItem('favorites', JSON.stringify(favorites))
