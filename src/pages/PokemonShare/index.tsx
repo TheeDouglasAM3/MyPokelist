@@ -32,7 +32,7 @@ const PokemonShare = (): ReactElement => {
 
   async function searchFavoritesPokemon(pokemonNums: string[]) {
     const promisesPokemonDetails: any = []
-    if (pokemonNums.length > 0) {
+    if (pokemonNums.length > 0 && pokemonNums.length <= 20) {
       pokemonNums.forEach((numberPokemon: string) => {
         promisesPokemonDetails.push(api.get(`https://pokeapi.co/api/v2/pokemon/${numberPokemon}/`))
       })
