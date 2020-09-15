@@ -49,10 +49,19 @@ const PokemonFav = (): ReactElement => {
     setFavPokemonStringLink(`&p=${favorites}`)
   }
 
+  function saveNameLocalStorage(name: string) {
+    localStorage.setItem('username', name)
+  }
+
+  function renderUsername() {
+    setUserName(localStorage.getItem('username') || '')
+  }
+
   useEffect(() => {
     async function renderFavoritesPokemon() {
       await searchFavoritesPokemon()
     }
+    renderUsername()
     favoritesLocalStorageToString()
     renderFavoritesPokemon()
   }, [])
@@ -75,7 +84,9 @@ const PokemonFav = (): ReactElement => {
           id="input-name-user"
           type="text"
           placeholder="Digite o seu nome"
+          value={userName}
           onChange={(ev: React.FormEvent<HTMLInputElement>) => setUserName(ev.currentTarget.value)}
+          onBlur={(ev: React.FormEvent<HTMLInputElement>) => saveNameLocalStorage(ev.currentTarget.value)}
         />
       </div>
 
