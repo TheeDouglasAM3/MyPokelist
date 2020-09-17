@@ -8,7 +8,7 @@ import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDis
 import './styles.css'
 
 const PokemonList = (): ReactElement => {
-  const pokemonPerPage = 80
+  const pokemonPerPage = 160
   const maxNumberPokemon = 807
   const [pokemons, setPokemons] = useState<PokemonDisplayProps[]>([])
   const [offsetPoke, setOffsetPoke] = useState(0)
