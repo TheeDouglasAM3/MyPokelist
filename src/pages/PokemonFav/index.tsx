@@ -85,11 +85,11 @@ const PokemonFav = (): ReactElement => {
           onFocus={(event) => event.currentTarget.select()}
           readOnly
         />
-        <div id="share-social-medias">
+        {/* <div id="share-social-medias">
           <a href={shareLinkFacebook} className="btn-share-sm" id="sr-facebook" target="_blank" rel="noreferrer">f</a>
           <a href={shareLinkTwitter} className="btn-share-sm" id="sr-twitter" target="_blank" rel="noreferrer">t</a>
           <a href={shareLinkWhatsapp} className="btn-share-sm" id="sr-whatsapp" target="_blank" rel="noreferrer">w</a>
-        </div>
+        </div> */}
         <Link to="/pokemon-list" id="link-list-pokemon" />
       </div>
 
