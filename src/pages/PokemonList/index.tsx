@@ -8,7 +8,7 @@ import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDis
 import './styles.css'
 
 const PokemonList = (): ReactElement => {
-  const pokemonPerPage = 160
+  const pokemonPerPage = 80
   const maxNumberPokemon = 807
   const [pokemons, setPokemons] = useState<PokemonDisplayProps[]>([])
   const [offsetPoke, setOffsetPoke] = useState(0)
@@ -135,6 +135,8 @@ const PokemonList = (): ReactElement => {
       </div>
 
       {loading && <div className="loading">Loading ...</div>}
+      {!loading && <div className="loading">No Loading ...</div>}
+      {(!loading && isTheLastPage()) && <div className="loading">No Loading and last page</div>}
     </div>
   )
 }
