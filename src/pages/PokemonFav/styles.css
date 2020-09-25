@@ -99,10 +99,14 @@
 @media (max-width: 800px) {
 
   .navbar-fav {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 40% 1fr 1fr ;
     grid-template-areas: 
-    "input input button"
+    "input social-media button"
   ;
+  }
+
+  .navbar-fav #link-list-pokemon{
+    margin-right:0;
   }
 
   .navbar-fav #link-list-pokemon:after {
