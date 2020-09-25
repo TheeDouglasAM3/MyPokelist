@@ -8,9 +8,17 @@ import './styles.css'
 
 const PokemonFav = (): ReactElement => {
   const baseUrl = `http://${window.location.host}`
+  const webUrl = 'https://my-pokelist.vercel.app/'
   const [pokemons, setPokemons] = useState<PokemonDisplayProps[]>([])
   const [userName, setUserName] = useState('')
   const [favPokemonStringLink, setFavPokemonStringLink] = useState('')
+  const message = 'Veja meus pokémon favoritos em: '
+  const completeUrl = `${webUrl}/pokemon-share?name=${userName}${favPokemonStringLink}`.replaceAll('&', '%26')
+  
+  const shareLinkFacebook = `https://www.facebook.com/sharer/sharer.php?u=${webUrl}&quote=${message}${completeUrl}`
+  const shareLinkTwitter = `https://twitter.com/intent/tweet?text=${message}${completeUrl}`
+  const shareLinkWhatsapp = `https://api.whatsapp.com/send?text=${message}${completeUrl}`
+
 
   async function callPromisesToRenderPokemon(promisesPokemonDetails: any[]) {
     await Promise.all([...promisesPokemonDetails])
@@ -70,13 +78,18 @@ const PokemonFav = (): ReactElement => {
     <div id="page-pokemon-fav">
       <div className="navbar">
         <input
-          id="input-link"
+          id="input-link-fav"
           type="text"
           value={`${baseUrl}/pokemon-share?name=${userName}${favPokemonStringLink}`}
           placeholder="Link para compartilhar"
           onFocus={(event) => event.currentTarget.select()}
           readOnly
         />
+        <div id="share-social-medias">
+          <a href={shareLinkFacebook} className="btn-share-sm" id="sr-facebook" target="_blank" rel="noreferrer">f</a>
+          <a href={shareLinkTwitter} className="btn-share-sm" id="sr-twitter" target="_blank" rel="noreferrer">t</a>
+          <a href={shareLinkWhatsapp} className="btn-share-sm" id="sr-whatsapp" target="_blank" rel="noreferrer">w</a>
+        </div>
         <Link to="/pokemon-list" id="link-list-pokemon" />
       </div>
 

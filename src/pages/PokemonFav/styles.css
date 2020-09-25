@@ -10,9 +10,9 @@
   position: fixed;
   z-index:1;
   grid-template-rows: 4.2rem ;
-  grid-template-columns: 2fr 250px;
+  grid-template-columns: 2fr 135px 250px;
   grid-template-areas: 
-    "input button"
+    "input social-media button"
   ;
   background: var(--color-primary-light);
 }
@@ -22,6 +22,38 @@
   font-size: 2.4rem;
   padding: 0.8rem;
   background: var(--color-input-background);
+}
+
+.navbar #share-social-medias {
+  grid-area: social-media;
+  width:100%;
+  margin-left:1.1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.navbar #share-social-medias .btn-share-sm {
+  width: 100%;
+  text-decoration: none;
+  border-radius: 0.8rem;
+  padding:0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--color-button-text);
+}
+
+.navbar #share-social-medias #sr-facebook {
+  background-color: #3b5998;
+}
+.navbar #share-social-medias #sr-twitter {
+  background-color: #00acee;
+  margin-left: 0.5rem;
+}
+.navbar #share-social-medias #sr-whatsapp {
+  background-color: #4ac959;
+  margin-left: 1.0rem;
 }
 
 .navbar #link-list-pokemon {
