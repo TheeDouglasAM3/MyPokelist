@@ -71,7 +71,7 @@ const PokemonList = (): ReactElement => {
     return pokemons.length >= maxNumberPokemon - pokemonPerPage
   }
 
-  const handleScroll = () => {
+  function handleOffsetToRenderPokemonList() {
     if (isThereMorePokemonToShow()) {
       if (!isTheLastPage()) {
         setOffsetPoke(offsetPoke + pokemonPerPage)
@@ -84,7 +84,7 @@ const PokemonList = (): ReactElement => {
 
   window.onscroll = () => {
     if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-      handleScroll()
+      handleOffsetToRenderPokemonList()
     }
   }
 
@@ -133,18 +133,17 @@ const PokemonList = (): ReactElement => {
         ))}
 
       </div>
-
       {loading && <div className="loading">Loading ...</div>}
-      {!loading && (
-      <div className="loading">
-        No Loading ... <br />
-        Offset = {offsetPoke}<br />
-        maxpokemon = {maxNumberPokemon}<br />
-        loading = {loading.toString()}<br />
-        inputSearch.length = {inputSearch.length}
-      </div>
+      {(!loading && offsetPoke !== maxNumberPokemon)
+      && (
+      <a
+        id="btn-load-more"
+        onClick={handleOffsetToRenderPokemonList}
+      >
+        Load more
+      </a>
       )}
-      {(!loading && isTheLastPage()) && <div className="loading">No Loading and last page</div>}
+
     </div>
   )
 }

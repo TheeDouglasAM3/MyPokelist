@@ -56,6 +56,10 @@
   text-align: center;
 }
 
+#btn-load-more{
+  display: none;
+}
+
 @media (max-width: 800px) {
 
   .navbar {
@@ -78,5 +82,22 @@
     width: 30rem;
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
+  }
+
+  #btn-load-more{
+    color: var(--color-button-text);
+    background: var(--color-secundary);
+    padding: 1.0rem;
+    margin: auto;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+    width: 30rem;
+    border-radius: 0.8rem;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
   }
 }
