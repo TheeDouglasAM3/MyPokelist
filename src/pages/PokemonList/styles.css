@@ -63,9 +63,9 @@
 @media (max-width: 800px) {
 
   .navbar {
-    grid-template-columns: 1fr;
+    grid-template-columns: 60% 1fr;
     grid-template-areas: 
-    "button"
+    "input button"
   ;
   }
 
