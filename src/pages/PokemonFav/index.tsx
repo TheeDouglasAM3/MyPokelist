@@ -76,7 +76,7 @@ const PokemonFav = (): ReactElement => {
 
   return (
     <div id="page-pokemon-fav">
-      <div className="navbar">
+      <div className="navbar-fav">
         <input
           id="input-link-fav"
           type="text"

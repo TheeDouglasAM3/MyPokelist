@@ -3,7 +3,7 @@
   height: 100vh;
 }
 
-.navbar {
+.navbar-fav {
   width: 100%;
   padding: 1.6rem;
   display: grid;
@@ -17,14 +17,14 @@
   background: var(--color-primary-light);
 }
 
-.navbar #input-link {
+.navbar-fav #input-link {
   grid-area: input;
   font-size: 2.4rem;
   padding: 0.8rem;
   background: var(--color-input-background);
 }
 
-.navbar #share-social-medias {
+.navbar-fav #share-social-medias {
   grid-area: social-media;
   width:100%;
   margin-left:1.1rem;
@@ -32,7 +32,7 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
-.navbar #share-social-medias .btn-share-sm {
+.navbar-fav #share-social-medias .btn-share-sm {
   width: 100%;
   text-decoration: none;
   border-radius: 0.8rem;
@@ -44,19 +44,19 @@
   color: var(--color-button-text);
 }
 
-.navbar #share-social-medias #sr-facebook {
+.navbar-fav #share-social-medias #sr-facebook {
   background-color: #3b5998;
 }
-.navbar #share-social-medias #sr-twitter {
+.navbar-fav #share-social-medias #sr-twitter {
   background-color: #00acee;
   margin-left: 0.5rem;
 }
-.navbar #share-social-medias #sr-whatsapp {
+.navbar-fav #share-social-medias #sr-whatsapp {
   background-color: #4ac959;
   margin-left: 1.0rem;
 }
 
-.navbar #link-list-pokemon {
+.navbar-fav #link-list-pokemon {
   grid-area: button;
   color: var(--color-button-text);
   background: var(--color-primary);
@@ -71,7 +71,7 @@
   justify-content: center;
 }
 
-.navbar #link-list-pokemon:after {
+.navbar-fav #link-list-pokemon:after {
   content: 'Lista';
 }
 
@@ -98,20 +98,20 @@
 
 @media (max-width: 800px) {
 
-  .navbar {
+  .navbar-fav {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 
     "input input button"
   ;
   }
 
-  .navbar #link-list-pokemon:after {
+  .navbar-fav #link-list-pokemon:after {
     font-size: 2.6rem;
     content: '≡';
     
   }
 
-  .navbar #input-link {
+  .navbar-fav #input-link {
     font-size: 1.2rem;
   }
 
