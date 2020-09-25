@@ -135,7 +135,15 @@ const PokemonList = (): ReactElement => {
       </div>
 
       {loading && <div className="loading">Loading ...</div>}
-      {!loading && <div className="loading">No Loading ...</div>}
+      {!loading && (
+      <div className="loading">
+        No Loading ... <br />
+        Offset = {offsetPoke}<br />
+        maxpokemon = {maxNumberPokemon}<br />
+        loading = {loading.toString()}<br />
+        inputSearch.length = {inputSearch.length}
+      </div>
+      )}
       {(!loading && isTheLastPage()) && <div className="loading">No Loading and last page</div>}
     </div>
   )
