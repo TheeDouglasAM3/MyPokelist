@@ -14,11 +14,10 @@ const PokemonFav = (): ReactElement => {
   const [favPokemonStringLink, setFavPokemonStringLink] = useState('')
   const message = 'Veja meus pokémon favoritos em: '
   const completeUrl = `${webUrl}/pokemon-share?name=${userName}${favPokemonStringLink}`.replaceAll('&', '%26')
-  
+
   const shareLinkFacebook = `https://www.facebook.com/sharer/sharer.php?u=${webUrl}&quote=${message}${completeUrl}`
   const shareLinkTwitter = `https://twitter.com/intent/tweet?text=${message}${completeUrl}`
   const shareLinkWhatsapp = `https://api.whatsapp.com/send?text=${message}${completeUrl}`
-
 
   async function callPromisesToRenderPokemon(promisesPokemonDetails: any[]) {
     await Promise.all([...promisesPokemonDetails])
@@ -57,12 +56,22 @@ const PokemonFav = (): ReactElement => {
     setFavPokemonStringLink(`&p=${favorites}`)
   }
 
-  function saveNameLocalStorage(name: string) {
-    localStorage.setItem('username', name)
+  function saveNameLocalStorage(event: React.FormEvent<HTMLInputElement>) {
+    localStorage.setItem('username', event.currentTarget.value)
   }
 
   function renderUsername() {
-    setUserName(localStorage.getItem('username') || '')
+    setUserName(localStorage.getItem('username')?.toString() || '')
+  }
+
+  function saveUserName(event: React.FormEvent<HTMLInputElement>) {
+    setUserName(event.currentTarget.value)
+  }
+
+  function formatLink(event: React.FormEvent<HTMLInputElement>) {
+    const eventTarget = event.currentTarget
+    eventTarget.value = eventTarget.value.replaceAll(' ', '%20')
+    eventTarget.select()
   }
 
   useEffect(() => {
@@ -82,7 +91,7 @@ const PokemonFav = (): ReactElement => {
           type="text"
           value={`${baseUrl}/pokemon-share?name=${userName}${favPokemonStringLink}`}
           placeholder="Link para compartilhar"
-          onFocus={(event) => event.currentTarget.select()}
+          onFocus={(event) => formatLink(event)}
           readOnly
         />
         <div id="share-social-medias">
@@ -99,8 +108,8 @@ const PokemonFav = (): ReactElement => {
           type="text"
           placeholder="Digite o seu nome"
           value={userName}
-          onChange={(ev: React.FormEvent<HTMLInputElement>) => setUserName(ev.currentTarget.value)}
-          onBlur={(ev: React.FormEvent<HTMLInputElement>) => saveNameLocalStorage(ev.currentTarget.value)}
+          onChange={(event: React.FormEvent<HTMLInputElement>) => saveUserName(event)}
+          onBlur={(event: React.FormEvent<HTMLInputElement>) => saveNameLocalStorage(event)}
         />
       </div>
 
