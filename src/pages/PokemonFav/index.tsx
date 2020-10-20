@@ -6,6 +6,23 @@ import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDis
 
 import './styles.css'
 
+interface PokemonResponse {
+  data: {
+    id: number,
+    name: string,
+    sprites: {
+      'front_default': string
+    },
+    types: [
+      {
+        type: {
+          name: string
+        }
+      }
+    ]
+  }
+}
+
 const PokemonFav = (): ReactElement => {
   const baseUrl = `http://${window.location.host}`
   const webUrl = 'https://my-pokelist.vercel.app/'
@@ -21,9 +38,9 @@ const PokemonFav = (): ReactElement => {
 
   async function callPromisesToRenderPokemon(promisesPokemonDetails: any[]) {
     await Promise.all([...promisesPokemonDetails])
-      .then((elements: any) => {
+      .then((elements: PokemonResponse[]) => {
         let pokemonAux: PokemonDisplayProps[] = []
-        elements.forEach((element: any) => {
+        elements.forEach((element: PokemonResponse) => {
           pokemonAux = [...pokemonAux, {
             name: element.data.name,
             number: element.data.id,

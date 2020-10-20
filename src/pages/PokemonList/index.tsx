@@ -7,6 +7,28 @@ import PokemonDisplay, { PokemonDisplayProps } from '../../components/PokemonDis
 
 import './styles.css'
 
+interface Pokemon {
+  url: string
+  name: string
+}
+
+interface PokemonResponse {
+  data: {
+    id: number,
+    name: string,
+    sprites: {
+      'front_default': string
+    },
+    types: [
+      {
+        type: {
+          name: string
+        }
+      }
+    ]
+  }
+}
+
 const PokemonList = (): ReactElement => {
   const pokemonPerPage = 80
   const maxNumberPokemon = 807
@@ -19,9 +41,9 @@ const PokemonList = (): ReactElement => {
 
   async function callPromisesToRenderPokemon(promisesPokemonDetails: any[], filter = false) {
     await Promise.all([...promisesPokemonDetails])
-      .then((elements: any) => {
+      .then((elements: PokemonResponse[]) => {
         let pokemonAux: PokemonDisplayProps[] = []
-        elements.forEach((element: any) => {
+        elements.forEach((element: PokemonResponse) => {
           pokemonAux = [...pokemonAux, {
             name: element.data.name,
             number: element.data.id,
@@ -43,7 +65,7 @@ const PokemonList = (): ReactElement => {
     const promisesPokemonDetails: any = []
     await api.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
       .then((response: AxiosResponse) => {
-        response.data.results.forEach((element: any) => {
+        response.data.results.forEach((element: Pokemon) => {
           promisesPokemonDetails.push(api.get(element.url))
         })
       })
@@ -55,8 +77,8 @@ const PokemonList = (): ReactElement => {
     setInputSearch(event.currentTarget.value.toLowerCase())
     if (event.currentTarget.value.length >= 2) {
       const filterPokemon = listAllPokemon
-        .filter((element: any) => element.name.includes(event.currentTarget.value.toLowerCase()))
-        .map((element: any) => api.get(element.url))
+        .filter((element: Pokemon) => element.name.includes(event.currentTarget.value.toLowerCase()))
+        .map((element: Pokemon) => api.get(element.url))
       await callPromisesToRenderPokemon(filterPokemon, true)
     } else if (event.currentTarget.value.length === 0) {
       await searchPokemons(0, true)

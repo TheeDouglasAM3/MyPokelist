@@ -7,6 +7,28 @@ import './styles.css'
 import pokeballImg from '../../assets/images/pokeball.png'
 import PokemonShareDisplay, { PokemonShareDisplayProps } from '../../components/PokemonShareDisplay'
 
+interface PokemonResponse {
+  data: {
+    id: number,
+    name: string,
+    sprites: {
+      'front_default': string,
+      other: {
+        'official-artwork': {
+          'front_default': string
+        }
+      }
+    },
+    types: [
+      {
+        type: {
+          name: string
+        }
+      }
+    ]
+  }
+}
+
 const PokemonShare = (): ReactElement => {
   const params = new URLSearchParams(window.location.search)
   const [userName, setUserName] = useState('')
@@ -14,9 +36,9 @@ const PokemonShare = (): ReactElement => {
 
   async function callPromisesToRenderPokemon(promisesPokemonDetails: any[]) {
     await Promise.all([...promisesPokemonDetails])
-      .then((elements: any) => {
+      .then((elements: PokemonResponse[]) => {
         let pokemonAux: PokemonShareDisplayProps[] = []
-        elements.forEach((element: any) => {
+        elements.forEach((element: PokemonResponse) => {
           pokemonAux = [...pokemonAux, {
             name: element.data.name,
             number: element.data.id,
